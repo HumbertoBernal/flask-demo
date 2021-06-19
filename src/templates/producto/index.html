@@ -1,0 +1,66 @@
+{% extends 'layout.html' %}
+{% block body %}
+      <h1>Index Productos</h1>
+      <section class="content">
+          <div class="box box-primary">
+              <div class="box-header">
+                  <a href="/producto/add/">
+                    <center> 
+                        <button type="button" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-plus"></span> Nuevo producto
+                        </button>
+                    </center>
+                    </a>
+              </div>
+              <div class="box-body">
+                  <table id="dataphone" class="table table-border table-striped">
+                      <head align="center">
+                          <tr>
+                              <th>Código</th>
+                              <th>Descripción</th>
+                              <th>Precio</th>
+                              <th>Stock</th>
+                              <th>Categoría</th>
+                              <th>Acción</th>
+                          </tr>
+                      </head>
+                      <body>
+                          {% if productos|length== 0 %}
+                          <tr>
+                            <td>Sin datos</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            </tr>
+                          {% else %}
+                          
+                          {% for u in productos %}
+                          
+                          <tr>
+                            <td>{{ u[1] }}</td>
+                            <td>{{ u[2] }}</td>
+                            <td>{{ u[3] }}</td>
+                            <td>{{ u[4] }}</td>
+                            <td>{{ u[5] }}</td>
+                            <th align="center">
+                                <a href="/producto/update/{{ u[0] }}">
+                                    <button type="button" class="btn btn-sm btn-warning btn-flat" title="update">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </button>
+                                </a>
+                                <a href="/producto/delete/{{ u[0] }}">
+                                    <button type="button" class="btn btn-sm btn-warning btn-flat" title="delete">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
+                                </a>
+                            </th>
+                          </tr>
+                          {% endfor%}
+                          {% endif %}
+                      </body>
+                  </table>
+              </div>
+          </div>
+      </section>
+{% endblock %}
